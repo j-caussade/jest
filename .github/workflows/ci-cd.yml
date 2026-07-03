@@ -21,8 +21,8 @@ jobs:
       - name: Installer les deps
         run: npm i
 
-      - name: lancer le serveur
-        run: node server.js
+      #- name: lancer le serveur
+      #  run: node server.js
 
       - name: Lancer les tests unitaires
         run: npm run test:unit
