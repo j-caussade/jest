@@ -1,33 +1,37 @@
-name: CI/CD Pipeline
+name: CI pipeline
 
 on:
   push:
-    branches: [main]
+    branches: ["main"]
   pull_request:
-    branches: [main]
+    branches: ["main"]
 
 jobs:
   test-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Récuperer le code du projet
+      - name: Récupérer le code du projet
         uses: actions/checkout@v4
 
-      - name: Installer Nodejs
+      - name: Installer NodeJS
         uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
 
-      - name: Installer dépendances
-        run: npm install
+      - name: Installer les deps
+        run: npm i
 
       - name: Lancer les tests unitaires
         run: npm run test:unit
 
-      - name: Lancer les tests d'intégration
+      - name: Lancer les tests integration
         run: npm run test:integration
 
-      - name: Installation de Playwright et des navigateurs
+      - name: Installer les navigateurs Playwright
         run: npx playwright install --with-deps
 
-      - name: Lancer les tests E2E
+      - name: Lancer les tests e2e
         run: npm run test:e2e
+
+      - name: Deploiement
+        run: echo "Déploiement non configuré"
