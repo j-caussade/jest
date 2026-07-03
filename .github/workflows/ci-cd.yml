@@ -1,6 +1,5 @@
 name: CI/CD Pipeline
 
-# Déclenchement du Workflow
 on:
   push:
     branches: [main]
@@ -11,24 +10,24 @@ jobs:
   test-and-deploy:
     runs-on: ubuntu-latest
 
-  steps:
-    name: Récuperer le code du projet
-    uses: actions/checkout@v4
+    steps:
+      - name: Récuperer le code du projet
+        uses: actions/checkout@v4
 
-    name: Installer Nodejs
-    uses: actions/setup-node@v4
+      - name: Installer Nodejs
+        uses: actions/setup-node@v4
 
-    name: Installer dépendances
-    run: npm install
+      - name: Installer dépendances
+        run: npm install
 
-    name: Lancer les tests unitaires
-    run: npm run test:unit
+      - name: Lancer les tests unitaires
+        run: npm run test:unit
 
-    name: Lancer les tests d'intégration
-    run: npm run test:integration
+      - name: Lancer les tests d'intégration
+        run: npm run test:integration
 
-    name: Installation de Playwright et des navigateurs
-    run: npx playwright install --with-deps
+      - name: Installation de Playwright et des navigateurs
+        run: npx playwright install --with-deps
 
-    name: Lancer les tests E2E
-    run: npm run test:e2e
+      - name: Lancer les tests E2E
+        run: npm run test:e2e
